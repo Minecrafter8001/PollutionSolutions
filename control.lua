@@ -156,10 +156,19 @@ function EntityDied(event)
 			if isArtillery then
 				log(event.cause.type.." from force "..event.force.name.." killed "..alien.name..".")
 			end
-			alien.surface.spill_item_stack(alien.position, loot, true, event.force)
+			alien.surface.spill_item_stack({
+				position = alien.position,
+				stack = loot,
+				enable_looted = true,
+				force = event.force,
+			})
 			return
 		else
-			alien.surface.spill_item_stack(alien.position, loot, true)
+			alien.surface.spill_item_stack({
+				position = alien.position,
+				stack = loot,
+				enable_looted = true,
+			})
 			-- remember my loot
 			local nearItems = alien.surface.find_entities_filtered{
 					position=alien.position,
