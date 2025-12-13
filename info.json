@@ -1,10 +1,10 @@
 {
-	"name": "PollutionSolutions",
+	"name": "PollutionSolutions2",
 	"author": "Zerahan, Thalassicus",
-	"version": "1.0.6",
+	"version": "1.0.0",
 	"factorio_version": "2.0",
-	"title": "Pollution Solutions",
+	"title": "Pollution Solutions (updated 2.0)",
 	"homepage": "https://forums.factorio.com/viewtopic.php?f=190&t=83002",
 	"description": "Turn pollution and combat into an interconnected system. Destroy alien nests to obtain red xenomass for building pollution collectors and blue xenomass for converting pollution into electricity or resources. Minimalist mod that rewards active defense and complex systems over passive turrets.",
-	"dependencies": ["base >= 0.18", "? Rampant"]
+	"dependencies": ["base >= 2.0", "? Rampant", "! PollutionSolutions" ]
 } 

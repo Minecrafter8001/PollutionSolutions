@@ -9,10 +9,10 @@ pollutioncollector.name = "pollutioncollector"
 pollutioncollector.order = "z"
 pollutioncollector.minable.result = "pollutioncollector"
 pollutioncollector.crafting_categories = {"pollution"}
-pollutioncollector.icon = "__PollutionSolutions__/graphics/icons/pollution-collector.png"
+pollutioncollector.icon = "__PollutionSolutions2__/graphics/icons/pollution-collector.png"
 pollutioncollector.icon_size = 64
 pollutioncollector.pictures.picture.sheets[1] = {
-	filename = "__PollutionSolutions__/graphics/entity/pollution-collector/hr-pollution-collector.png",
+	filename = "__PollutionSolutions2__/graphics/entity/pollution-collector/hr-pollution-collector.png",
 	frames = 2,
 	size = {215,215},
 	line_length = 2,
@@ -32,7 +32,7 @@ local pollutioncollector_item = util.table.deepcopy(data.raw['item']['steam-turb
 pollutioncollector_item.name = "pollutioncollector"
 pollutioncollector_item.place_result = "pollutioncollector"
 pollutioncollector_item.stack_size = 50
-pollutioncollector_item.icon = "__PollutionSolutions__/graphics/icons/pollution-collector.png"
+pollutioncollector_item.icon = "__PollutionSolutions2__/graphics/icons/pollution-collector.png"
 pollutioncollector_item.icon_size = 64
 
 

@@ -21,18 +21,18 @@ script.on_event(defines.events.on_robot_pre_mined, function(event) OnEntityPreRe
 script.on_event(defines.events.on_entity_died, function(event) OnEntityPreRemoved(event) end)
 script.on_event(defines.events.on_entity_died, function(event) EntityDied(event) end)
 
-PollutionSolutions = {}
+PollutionSolutions2 = {}
 
 script.on_init(function()
-  local _, err = pcall(PollutionSolutions.InitGlobals)
-  if err then PrintToAll({"pollutionsolutions-err-generic", err}) end
+	local _, err = pcall(PollutionSolutions2.InitGlobals)
+	if err then PrintToAll({"pollutionsolutions-err-generic", err}) end
 end)
 script.on_configuration_changed(function()
-  local _, err = pcall(PollutionSolutions.InitGlobals)
-  if err then PrintToAll({"pollutionsolutions-err-generic", err}) end
+	local _, err = pcall(PollutionSolutions2.InitGlobals)
+	if err then PrintToAll({"pollutionsolutions-err-generic", err}) end
 end)
 
-function PollutionSolutions.InitGlobals()
+function PollutionSolutions2.InitGlobals()
 	storage.toxicDumps = {}
 	storage.collectors = {}
 	storage.spilledLoot = {}

@@ -3,7 +3,7 @@ data.raw["pipe-to-ground"]["pipe-to-ground"].fluid_box.pipe_connections[2].max_u
 local incinerator_item = util.table.deepcopy(data.raw['item']['nuclear-reactor'])
 incinerator_item.name = "toxic-incinerator"
 incinerator_item.place_result = "toxic-incinerator"
-incinerator_item.icon="__PollutionSolutions__/graphics/icons/incinerator.png"
+incinerator_item.icon="__PollutionSolutions2__/graphics/icons/incinerator.png"
 incinerator_item.icon_size=64
 
 local toxicturret_item = util.table.deepcopy(data.raw['item']['flamethrower-turret'])
@@ -12,7 +12,7 @@ toxicturret_item.place_result = "toxic-turret"
 incinerator_item.icon_size=64
 toxicturret_item.icons={
 	{
-		icon = "__PollutionSolutions__/graphics/icons/toxic-turret.png"
+		icon = "__PollutionSolutions2__/graphics/icons/toxic-turret.png"
 	},
     {
 		icon = data.raw['fluid']['toxic-sludge'].icon,
@@ -40,13 +40,13 @@ airfilter_item.icons={
 local lowheater_item = util.table.deepcopy(data.raw['item']['heat-exchanger'])
 lowheater_item.name = "low-heat-exchanger"
 lowheater_item.place_result = "low-heat-exchanger"
-lowheater_item.icon = "__PollutionSolutions__/graphics/icons/low-heat-boiler.png"
+lowheater_item.icon = "__PollutionSolutions2__/graphics/icons/low-heat-boiler.png"
 lowheater_item.icon_size=64
 
 local emitter_item = util.table.deepcopy(data.raw['item']['storage-tank'])
 emitter_item.name = "dump-site"
 emitter_item.place_result = "dump-site"
-emitter_item.icon = "__PollutionSolutions__/graphics/icons/toxicdump_icon.png"
+emitter_item.icon = "__PollutionSolutions2__/graphics/icons/toxicdump_icon.png"
 emitter_item.icon_size=64
 emitter_item.subgroup = "defensive-structure"
 
@@ -59,7 +59,7 @@ data:extend({
 	{
 		type = "item",
 		name = "blue-xenomass",
-		icon = "__PollutionSolutions__/graphics/icons/blue-xenomass.png",
+		icon = "__PollutionSolutions2__/graphics/icons/blue-xenomass.png",
 		icon_size = 64,
 		subgroup = "raw-material",
 		order = "x[blue-xenomass]",
@@ -68,7 +68,7 @@ data:extend({
 	{
 		type = "item",
 		name = "red-xenomass",
-		icon = "__PollutionSolutions__/graphics/icons/red-xenomass.png",
+		icon = "__PollutionSolutions2__/graphics/icons/red-xenomass.png",
 		icon_size = 64,
 		subgroup = "raw-material",
 		order = "x[red-xenomass]",

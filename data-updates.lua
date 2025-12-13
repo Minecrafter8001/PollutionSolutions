@@ -20,7 +20,7 @@ data:extend(
 	{
 		type = "technology",
 		name = "pollution-controls",
-		icon = "__PollutionSolutions__/graphics/icons/pollution-collection.png",
+    icon = "__PollutionSolutions2__/graphics/icons/pollution-collection.png",
 		icon_size = 128,
 		prerequisites = {"automation-2"},
 		unit =
@@ -65,7 +65,7 @@ data:extend(
 	{
 		type = "technology",
 		name = "inceneration",
-		icon = "__PollutionSolutions__/graphics/icons/inceneration.png",
+    icon = "__PollutionSolutions2__/graphics/icons/inceneration.png",
 		icon_size = 128,
 		prerequisites = {"pollution-controls", "flammables","military-2"},
 		unit =

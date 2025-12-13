@@ -85,7 +85,7 @@ data:extend({
 			{type="fluid", name="toxic-sludge", amount=SLUDGE_PER_FILTER},
 		},
 		main_product= "",
-		icon = "__PollutionSolutions__/graphics/icons/fluid/toxicsludge.png",
+		icon = "__PollutionSolutions2__/graphics/icons/fluid/toxicsludge.png",
 		icon_size = 64,
 		subgroup = "fluid-recipes",
 		order = "z",
