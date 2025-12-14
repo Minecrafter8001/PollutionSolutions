@@ -154,7 +154,7 @@ function EntityDied(event)
 	if loot.count >= 1 then
 		if safetyRadius == 0 or isArtillery then
 			if isArtillery then
-				log(event.cause.type.." from force "..event.force.name.." killed "..alien.name..".")
+				--log(event.cause.type.." from force "..event.force.name.." killed "..alien.name..".")  
 			end
 			alien.surface.spill_item_stack({
 				position = alien.position,
@@ -401,14 +401,19 @@ end
 function CollectPollution(entity, surface)
 	local contents = entity.fluidbox[1]
 	if contents == nil then
+		--log("Initializing empty fluidbox at " .. GetPositionString(entity))
 		contents = {
 			name = POLLUTED_AIR_NAME,
 			amount = 0.0000001,
 		}
 	end
-	--log("collecting at " .. GetPositionString(entity))
-	local capacityRemaining = (entity.fluidbox.get_capacity(1) - contents.amount) * EMISSIONS_PER_AIR		
-	if capacityRemaining <= 0 then return end
+	--log("Collecting at " .. GetPositionString(entity) .. ", current fluid: " .. contents.amount)
+	local capacityRemaining = entity.fluidbox.get_capacity(1) - contents.amount		
+	--log("  Capacity remaining: " .. capacityRemaining .. " / " .. entity.fluidbox.get_capacity(1))
+	if capacityRemaining <= 0 then 
+		--log("  Tank full, stopping collection")
+		return 
+	end
 
 	local neighbors = GetPollutionNeighbors(surface, entity.position)
 	local maxCollection = 0
@@ -417,34 +422,46 @@ function CollectPollution(entity, surface)
 			maxCollection = maxCollection + neighbors[x][y].maxCollection
 		end
 	end
-	--log("    maxCollection=" .. maxCollection)
-	if maxCollection <= 0 then return end
+	--log("  Max collection available: " .. maxCollection)
+	if maxCollection <= 0 then 
+		--log("  No pollution to collect")
+		return 
+	end
 
 	local collectionMultiplier = 1
 	if capacityRemaining < maxCollection then
 		collectionMultiplier = capacityRemaining / maxCollection
+		--log("  Collection limited by capacity, multiplier: " .. collectionMultiplier)
 	end
 
+	local totalCollected = 0
 	for x = -1,1 do
 		for y = -1,1 do
 			local emissionChange = collectionMultiplier * neighbors[x][y].maxCollection
 			surface.pollute(neighbors[x][y].position, -1 * emissionChange)
-			contents.amount = contents.amount + (emissionChange / EMISSIONS_PER_AIR)
+			totalCollected = totalCollected + (emissionChange / EMISSIONS_PER_AIR)
 		end
 	end
+	--log("  Total collected: " .. totalCollected .. ", new tank level: " .. contents.amount + totalCollected)
 
-	entity.fluidbox[1] = contents
+	-- Use insert_fluid to properly add fluid without triggering backflow
+	entity.insert_fluid({name = POLLUTED_AIR_NAME, amount = totalCollected})
 end
 
 function GetPollutionNeighbors(surface, position)
 	local neighbors = {}
+	local pollutionRemaining = settings.global["zpollution-pollution-remaining"].value
+	local collectorsRequired = settings.global["zpollution-collectors-required"].value
+	--log("GetPollutionNeighbors: pollutionRemaining=" .. pollutionRemaining .. ", collectorsRequired=" .. collectorsRequired)
+	
 	for nearX = -1,1 do
 		neighbors[nearX] = {}
 		for nearY = -1,1 do
 			neighbors[nearX][nearY] = {}
 			neighbors[nearX][nearY].position = {x = position.x + 32*nearX, y = position.y + 32*nearY}
 			neighbors[nearX][nearY].pollution = surface.get_pollution(neighbors[nearX][nearY].position)
-			neighbors[nearX][nearY].maxCollection = math.max(0, (neighbors[nearX][nearY].pollution - settings.global["zpollution-pollution-remaining"].value) / settings.global["zpollution-collectors-required"].value)
+			neighbors[nearX][nearY].maxCollection = math.max(0, (neighbors[nearX][nearY].pollution - pollutionRemaining) / collectorsRequired)
+			--log("  Chunk (" .. nearX .. "," .. nearY .. ") at " .. math.floor(neighbors[nearX][nearY].position.x) .. "," .. math.floor(neighbors[nearX][nearY].position.y) .. ": pollution=" .. neighbors[nearX][nearY].pollution .. ", maxCollection=" .. neighbors[nearX][nearY].maxCollection)
 		end
 	end
 	return neighbors
