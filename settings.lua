@@ -95,6 +95,20 @@ data:extend{
     default_value = 0.001,
 		order = "c-d"
   },
+  {
+    type = "bool-setting",
+    name = "zpollution-solar-reduction",
+    setting_type = "startup",
+    default_value = true,
+    order = "d-a"
+  },
+  {
+    type = "bool-setting",
+    name = "zpollution-accumulator-reduction",
+    setting_type = "startup",
+    default_value = true,
+    order = "d-b"
+  },
   
 
   -- Runtime
