@@ -24,12 +24,12 @@ script.on_event(defines.events.on_entity_died, function(event) EntityDied(event)
 PollutionSolutions2 = {}
 
 script.on_init(function()
-	local _, err = pcall(PollutionSolutions2.InitGlobals)
-	if err then PrintToAll({"pollutionsolutions-err-generic", err}) end
+	local ok, err = pcall(PollutionSolutions2.InitGlobals)
+	if not ok then PrintToAll({"pollutionsolutions-err-generic", err}) end
 end)
 script.on_configuration_changed(function()
-	local _, err = pcall(PollutionSolutions2.InitGlobals)
-	if err then PrintToAll({"pollutionsolutions-err-generic", err}) end
+	local ok, err = pcall(PollutionSolutions2.InitGlobals)
+	if not ok then PrintToAll({"pollutionsolutions-err-generic", err}) end
 end)
 
 function PollutionSolutions2.InitGlobals()
