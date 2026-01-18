@@ -444,8 +444,10 @@ function CollectPollution(entity, surface)
 	end
 	--log("  Total collected: " .. totalCollected .. ", new tank level: " .. contents.amount + totalCollected)
 
-	-- Use insert_fluid to properly add fluid without triggering backflow
-	entity.insert_fluid({name = POLLUTED_AIR_NAME, amount = totalCollected})
+	totalCollected = totalCollected or 0
+	if totalCollected > 0 then
+		entity.insert_fluid({name = POLLUTED_AIR_NAME, amount = totalCollected})
+	end
 end
 
 function GetPollutionNeighbors(surface, position)
