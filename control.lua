@@ -445,8 +445,14 @@ function CollectPollution(entity, surface)
 	--log("  Total collected: " .. totalCollected .. ", new tank level: " .. contents.amount + totalCollected)
 
 	totalCollected = totalCollected or 0
-	if totalCollected > 0 then
-		entity.insert_fluid({name = POLLUTED_AIR_NAME, amount = totalCollected})
+	if entity.valid and type(totalCollected) == "number" and totalCollected > 0 and totalCollected == totalCollected and totalCollected ~= math.huge and totalCollected ~= -math.huge then
+		local amountToInsert = totalCollected
+		if amountToInsert < 0.0001 then
+			amountToInsert = 0.0001
+		end
+		if amountToInsert > 0 then
+			entity.insert_fluid({name = POLLUTED_AIR_NAME, amount = amountToInsert})
+		end
 	end
 end
 
